@@ -1,0 +1,43 @@
+const fruits = document.querySelectorAll(".fruit");
+
+fruits.forEach((fruit) => {
+  const editBtn = document.createElement("button");
+  editBtn.className = "edit-btn";
+  editBtn.textContent = "Edit";
+  fruit.appendChild(editBtn);
+});
+
+const form = document.querySelector("form");
+const fruitInput = document.getElementById("fruit-to-add");
+const fruitList = document.querySelector(".fruits");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const fruitName = fruitInput.value;
+
+  const li = document.createElement("li");
+  li.className = "fruit";
+  li.textContent = fruitName;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-btn";
+  deleteBtn.textContent = "x";
+
+  const editBtn = document.createElement("button");
+  editBtn.className = "edit-btn";
+  editBtn.textContent = "Edit";
+
+  li.appendChild(deleteBtn);
+  li.appendChild(editBtn);
+
+  fruitList.appendChild(li);
+  fruitInput.value = "";
+});
+
+fruitList.addEventListener("click", function (e) {
+  if (e.target.classList.contains("delete-btn")) {
+    const li = e.target.parentElement;
+    fruitList.removeChild(li);
+  }
+});
